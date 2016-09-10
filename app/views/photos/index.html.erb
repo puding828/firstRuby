@@ -1,0 +1,34 @@
+<% if @photos.any? %>
+      <div class="row">
+        <% @photos.in_groups_of(3) do |group| %>
+          <% group.compact.each do |photo| %>
+          <div class="col-md-4">
+            <div class="photo">
+
+
+              <div class="photo-head">
+                <h4 class="name">
+                  <%= photo.user ? photo.user.email : "RG Kuching" %>
+                  <%= photo %>
+                </h4>
+              </div>
+              
+              <div class="image center-block">
+                <%= link_to photo_path(photo) do %>
+                  <%= image_tag(photo.file_url, class: "img-responsive") if photo.file.present? %>
+                <% end %>
+              </div>
+              <p class="caption">
+                <%= photo.caption %>
+                <%= link_to photo_path(photo), method: :delete, data: { confirm: "Are you sure you want to delete this photo?" }, class: "btn btn-danger btn-xs pull-right" do %>
+                  <i class="i fa fa-trash"></i>
+                <% end %>
+              </p>
+            </div>
+          </div>
+          <% end %>
+        <% end  %>
+      </div>
+    <% else  %>
+      <p>No photos found.</p>
+    <% end %>

@@ -1,0 +1,7 @@
+  <div class="row">
+      <div class="col-md-12 col-md-offset-0v text-center">
+        <%= image_tag(@photo.file_url) if @photo.file.present? %>
+        <h3><%= @photo.caption %></h1>
+        <h4><%= @photo ? @photo : "RG Kuching" %></h4>
+      </div>
+    </div>
